@@ -1,13 +1,15 @@
 import './LightSwitch.css';
-import useTheme, { ThemeContext } from '../../context/ThemeContext';
+import { useContext } from 'react';
+import { ThemeContext } from '../../context/ThemeContext';
 
 function LightSwitch() {
-  const { themeName, setThemeName } = useTheme;
+  const { themeName, setThemeName } = useContext(ThemeContext);
+
 
   return (
     <div className="light-switch day">
-      <button className="on">DAY</button>
-      <button className="off">NIGHT</button>
+      <button type='button' className="on" onClick={() => setThemeName('day')}>DAY</button>
+      <button type='button' className="off" onClick={() => setThemeName('night')}>NIGHT</button>
     </div>
   );
 }
