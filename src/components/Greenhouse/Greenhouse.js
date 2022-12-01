@@ -1,17 +1,25 @@
 import dayImage from './images/greenhouse-day.jpg';
+import {useContext, useEffect} from 'react';
 import nightImage from './images/greenhouse-night.jpg';
 import './Greenhouse.css';
+import useTheme, { ThemeContext } from '../../context/ThemeContext';
 
 import LightSwitch from './LightSwitch';
 import ClimateStats from './ClimateStats';
 
 function Greenhouse() {
+const { themeName, setThemeName } = useContext(ThemeContext)
+let theme
+  themeName === 'day' ? theme = dayImage : theme = nightImage;
+
+  useEffect(() => {let theme
+    themeName === 'day' ? theme = dayImage : theme = nightImage;}, [setThemeName]);
 
   return (
     <section>
       <img  className='greenhouse-img'
-            src={dayImage}
-            alt='greenhouse' 
+            src={theme}
+            alt='greenhouse'
       />
       <LightSwitch />
       <ClimateStats />
